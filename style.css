@@ -44,7 +44,7 @@ main{min-height:100vh}
 .directory-start{scroll-margin-top:18px}
 html,body{overscroll-behavior-y:none}
 body.home-page{position:relative;isolation:isolate;background:transparent}
-body.home-page::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:#eee8da url("assets/back.png") center center/cover no-repeat}
+body.home-page::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:#eee8da url("assets/back.png?v=2") center center/cover no-repeat}
 main{--leading:2.05;line-height:var(--leading);padding-bottom:10vh}
 .book-title{font-size:clamp(24px,4.5vw,36px);font-weight:600;letter-spacing:.12em;margin:0 0 22px}
 .chapter-heading{font-size:1.1em;letter-spacing:.15em;font-weight:400;margin:0 0 26px;padding-bottom:22px;border-bottom:1px solid var(--line)}
