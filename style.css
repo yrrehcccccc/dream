@@ -20,7 +20,7 @@
 .site-header-home{position:absolute;top:0;left:0;width:100%}
 .site-header-home .site-home{height:auto}
 .site-header-home .site-home img{width:100%;height:auto}
-.word-count{position:absolute;z-index:3;top:9px;left:10px;max-width:22vw;margin:0;padding:5px 7px;background:color-mix(in srgb,var(--bg) 88%,transparent);color:var(--ink);border:1px solid var(--line);border-radius:999px;font:9px/1.2 "Noto Sans SC",sans-serif;white-space:nowrap}
+.word-count{position:absolute;z-index:3;top:9px;left:10px;width:max-content;max-width:none;height:auto;min-height:0;box-sizing:border-box;display:block;flex:none;margin:0;padding:4px 7px;background:color-mix(in srgb,var(--bg) 88%,transparent);color:var(--ink);border:1px solid var(--line);border-radius:999px;font:clamp(8px,.8vw,11px)/1.15 "Noto Sans SC",sans-serif;letter-spacing:0;white-space:nowrap}
 .toolbar{position:absolute;z-index:3;top:8px;right:12px}
 .toolbar .round{background:color-mix(in srgb,var(--bg) 88%,transparent)}
 main{min-height:100vh}
@@ -31,19 +31,22 @@ main{min-height:100vh}
 .poster-hit{position:absolute;display:flex;align-items:center;justify-content:center;line-height:1;background:transparent;border-radius:2px;text-decoration:none}
 .poster-hit:focus-visible{outline:3px solid var(--ink);outline-offset:2px;background:color-mix(in srgb,var(--bg) 55%,transparent)}
 .poster-intro{height:3.7%;width:46%}
-.poster-chapter{height:.68%;width:12.5%;font-family:"Times New Roman",serif;font-size:clamp(10px,3vw,30px);color:#766c70;letter-spacing:.02em;text-shadow:0 1px 1px #fff8}
+.poster-chapter{height:.68%;width:12.5%;font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;font-size:clamp(10px,2.8vw,28px);font-weight:400;color:#766c70;letter-spacing:.02em;text-shadow:0 1px 1px #fff8}
 .poster-chapter:hover{background:color-mix(in srgb,#ef91a7 22%,transparent)}
 .directory-poster>img{transition:filter .3s}
 html[data-theme="1"] .directory-poster>img{filter:sepia(.09) saturate(.92)}
 html[data-theme="2"] .directory-poster>img{filter:saturate(.62) contrast(.97)}
 html[data-theme="3"] .directory-poster>img{filter:brightness(.74) saturate(.78)}
 html[data-theme="4"] .directory-poster>img{filter:sepia(.16) saturate(.9)}
-.dream-glyph{position:absolute;left:50%;top:30.35%;transform:translate(-50%,-50%) rotate(-11deg);z-index:2;color:#e985a0;font-family:"Noto Serif SC","Songti SC",serif;font-size:clamp(22px,5vw,52px);line-height:1;pointer-events:none;animation:dream-breathe 3.8s ease-in-out infinite}
+.dream-glyph{position:absolute;left:50.8%;top:30.8%;width:12%;height:4.2%;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%) rotate(-11deg);z-index:2;color:#e985a0;font-family:"Noto Serif SC","Songti SC",serif;font-size:clamp(28px,6vw,62px);line-height:1;text-decoration:none;animation:dream-breathe 3.8s ease-in-out infinite}
+.dream-glyph:focus-visible{outline:2px solid #e985a0;outline-offset:3px;border-radius:50%}
 @keyframes dream-breathe{0%,100%{opacity:.34}50%{opacity:.94}}
 .click-cue{position:absolute;z-index:2;left:50%;top:33.12%;width:8.5%;min-width:28px;max-width:92px;line-height:0;transform:translateX(-50%);animation:click-float 2s ease-in-out infinite}
 .click-cue img{display:block;width:100%;height:auto}
 @keyframes click-float{0%,100%{translate:0 0}50%{translate:0 -6px}}
 .directory-start{scroll-margin-top:18px}
+html,body{overscroll-behavior-y:none}
+body.home-page{background-color:color-mix(in srgb,var(--bg) 72%,#eadfca)}
 main{--leading:2.05;line-height:var(--leading);padding-bottom:10vh}
 .book-title{font-size:clamp(24px,4.5vw,36px);font-weight:600;letter-spacing:.12em;margin:0 0 22px}
 .chapter-heading{font-size:1.1em;letter-spacing:.15em;font-weight:400;margin:0 0 26px;padding-bottom:22px;border-bottom:1px solid var(--line)}
@@ -61,5 +64,5 @@ main{--leading:2.05;line-height:var(--leading);padding-bottom:10vh}
 .toc-intro a{color:var(--muted);font-size:12px;letter-spacing:.15em;text-decoration:none}.book-meta{color:var(--muted);font-family:"Noto Sans SC",sans-serif;font-size:12px;margin-bottom:36px}
 .chapter-nav{position:relative}.toc-dropdown{position:static}.toc-dropdown>summary{cursor:pointer;list-style:none;border:1px solid var(--line);border-radius:999px;padding:9px 13px;white-space:nowrap}.toc-dropdown>summary::-webkit-details-marker{display:none}.toc-dropdown>summary::after{content:' ▾'}.toc-dropdown[open]>summary::after{content:' ▴'}.toc-menu{position:absolute;right:0;top:calc(100% + 8px);width:min(310px,calc(100vw - 44px));max-height:55vh;overflow:auto;z-index:25;background:var(--bg);border:1px solid var(--line);box-shadow:0 12px 36px #0002;padding:10px}.chapter-nav .toc-menu a{display:block;white-space:normal;border:0;border-radius:0;padding:9px 12px}.toc-menu a[aria-current=page]{background:var(--surface)}.chapter-nav:last-child .toc-menu{top:auto;bottom:calc(100% + 8px)}.toc-disclosure>summary{cursor:pointer;padding:14px 0;border-block:1px solid var(--line);font-size:14px}.toc-disclosure{margin-bottom:30px}
 .panel{max-height:calc(100dvh - 90px);overflow:auto}a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-@media(max-width:640px){main{--leading:1.95}.chapter-nav{gap:6px;font-size:11px}.chapter-nav a,.chapter-nav .disabled{padding:9px 10px}.toc-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 12px}}
+@media(max-width:640px){main{--leading:1.95}.word-count{top:8px;left:8px;width:max-content;max-width:none;height:auto;min-height:0;padding:3px 5px;font-size:8px;line-height:1.15}.chapter-nav{gap:6px;font-size:11px}.chapter-nav a,.chapter-nav .disabled{padding:9px 10px}.toc-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 12px}}
 @media(prefers-reduced-motion:reduce){.dream-glyph,.click-cue{animation:none}}
