@@ -32,6 +32,7 @@ themes.forEach(([name, bg, ink], index) => {
   swatch.setAttribute('aria-hidden', 'true');
   button.append(swatch, name);
   button.onclick = () => {
+    root.dataset.theme = String(index);
     root.style.setProperty('--bg', bg);
     root.style.setProperty('--ink', ink);
     select('theme', index);
