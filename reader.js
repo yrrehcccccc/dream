@@ -52,8 +52,10 @@ document.querySelectorAll('[data-size]').forEach(button => button.onclick = () =
   select('size', button.dataset.size);
   save('size', button.dataset.size);
 });
-const theme = Number(read('theme'));
-document.querySelector('[data-theme="' + (Number.isInteger(theme) && themes[theme] ? theme : 0) + '"]').click();
+const savedTheme = read('theme');
+if (read('theme-default-version') !== '2') { if (savedTheme === null || savedTheme === '0') save('theme', 1); save('theme-default-version', '2'); }
+const theme = Number(read('theme') ?? 1);
+document.querySelector('[data-theme="' + (Number.isInteger(theme) && themes[theme] ? theme : 1) + '"]').click();
 const font = read('font');
 document.querySelector('[data-font="' + (Object.hasOwn(fonts, font) ? font : 'serif') + '"]').click();
 const size = read('size');
