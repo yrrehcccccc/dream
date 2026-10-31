@@ -35,10 +35,10 @@
   function queueEntry() {
     clearTimeout(bottomTimer);
     if (atBottom() && canEnter()) {
-      // Let the final scroll settle before the dissolve; scrolling up cancels it.
+      // Keep the bottom text fully visible for two seconds before dissolving; scrolling up cancels it.
       bottomTimer = window.setTimeout(() => {
         if (atBottom()) enterChapter();
-      }, 200);
+      }, 2000);
     }
   }
 
@@ -46,8 +46,8 @@
     frame = 0;
     const scroll = Math.max(0, window.scrollY);
     const fadeDistance = Math.max(window.innerHeight, poster.clientWidth) * 1.2;
-    // The document already moves up by scroll px; +scroll/2 leaves half speed.
-    poster.style.setProperty('--rear-offset', (reducedMotion.matches ? 0 : scroll * 0.5) + 'px');
+    // The document moves up by scroll px; +0.7 * scroll leaves 30% speed.
+    poster.style.setProperty('--rear-offset', (reducedMotion.matches ? 0 : scroll * 0.7) + 'px');
     poster.style.setProperty('--rear-opacity', reducedMotion.matches ? '1' : String(Math.max(0, 1 - scroll / fadeDistance)));
     if (userScroll && scroll > lastScroll) queueEntry();
     else if (scroll < lastScroll) clearTimeout(bottomTimer);
