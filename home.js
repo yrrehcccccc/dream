@@ -21,10 +21,15 @@
     return !leaving && !settings?.classList.contains('open') && !document.hidden;
   }
 
+  function cancelEntry() {
+    clearTimeout(bottomTimer);
+    bottomTimer = 0;
+  }
+
   function enterChapter() {
     if (!canEnter()) return;
     leaving = true;
-    clearTimeout(bottomTimer);
+    cancelEntry();
     document.body.classList.add('chapter-leaving');
     navigationTimer = window.setTimeout(() => {
       try { sessionStorage.setItem('dream-chapter-entry', String(Date.now())); } catch {}
@@ -33,13 +38,16 @@
   }
 
   function queueEntry() {
-    clearTimeout(bottomTimer);
-    if (atBottom() && canEnter()) {
-      // Keep the bottom text fully visible for two seconds before dissolving; scrolling up cancels it.
-      bottomTimer = window.setTimeout(() => {
-        if (atBottom()) enterChapter();
-      }, 2000);
+    if (!atBottom() || !canEnter()) {
+      cancelEntry();
+      return;
     }
+    // Repeated wheel/touch events at the bottom must not restart the wait.
+    if (bottomTimer) return;
+    bottomTimer = window.setTimeout(() => {
+      bottomTimer = 0;
+      if (atBottom()) enterChapter();
+    }, 500);
   }
 
   function drawLayers() {
@@ -50,7 +58,7 @@
     poster.style.setProperty('--rear-offset', (reducedMotion.matches ? 0 : scroll * 0.7) + 'px');
     poster.style.setProperty('--rear-opacity', reducedMotion.matches ? '1' : String(Math.max(0, 1 - scroll / fadeDistance)));
     if (userScroll && scroll > lastScroll) queueEntry();
-    else if (scroll < lastScroll) clearTimeout(bottomTimer);
+    else if (scroll < lastScroll && !atBottom()) cancelEntry();
     lastScroll = scroll;
   }
 
@@ -66,7 +74,7 @@
     if (!poster.contains(event.target)) return;
     userScroll = true;
     if (event.deltaY > 0) queueEntry();
-    else if (event.deltaY < 0) clearTimeout(bottomTimer);
+    else if (event.deltaY < 0) cancelEntry();
   }, { passive: true });
   poster.addEventListener('touchstart', event => {
     userScroll = true;
@@ -89,7 +97,7 @@
   });
   window.addEventListener('pageshow', () => {
     // A history return must reveal the directory without sending the reader back.
-    clearTimeout(bottomTimer);
+    cancelEntry();
     clearTimeout(navigationTimer);
     leaving = false;
     userScroll = false;
