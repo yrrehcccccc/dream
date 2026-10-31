@@ -89,3 +89,14 @@ body.home-page::after{content:"";position:fixed;inset:0;z-index:35;pointer-event
   .poster-chapter{font-size:clamp(10px,2.8cqw,28px)}
   .dream-glyph img{width:clamp(34px,7cqw,72px)}
 }
+
+/* Desktop artwork; the existing mobile images and reading column are retained. */
+@media(min-width:641px){
+  body.home-page::before{background-image:url("assets/back-desktop.jpg")}
+  .site-header{width:100%;margin-inline:0}
+  .site-header-home{left:0;transform:none}
+  .site-home img{content:url("assets/site-header-desktop.png");aspect-ratio:3840/343;height:auto}
+  .site-header .word-count{left:clamp(12px,2cqw,42px);top:2.58cqw;font-size:clamp(8px,.65cqw,11px)}
+  .site-header .toolbar{right:clamp(12px,2cqw,42px);top:2.58cqw}
+  .site-header .toolbar .round{width:clamp(26px,2.9cqw,42px);height:clamp(26px,2.9cqw,42px)}
+}
