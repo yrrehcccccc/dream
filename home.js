@@ -33,7 +33,7 @@
     document.body.classList.add('chapter-leaving');
     navigationTimer = window.setTimeout(() => {
       try { sessionStorage.setItem('dream-chapter-entry', String(Date.now())); } catch {}
-      window.location.assign('00.html');
+      window.location.assign('intro-1.html');
     }, reducedMotion.matches ? 0 : 520);
   }
 
@@ -90,7 +90,7 @@
     touchStartY = null;
   }, { passive: true });
   poster.addEventListener('click', event => {
-    const link = event.target.closest('a[href="00.html"]');
+    const link = event.target.closest('a[data-enter-intro]');
     if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     enterChapter();
