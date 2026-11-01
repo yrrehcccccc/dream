@@ -100,3 +100,9 @@ body.home-page::after{content:"";position:fixed;inset:0;z-index:35;pointer-event
   .site-header .toolbar{right:clamp(12px,2cqw,42px);top:1.58cqw}
   .site-header .toolbar .round{width:clamp(26px,2.9cqw,42px);height:clamp(26px,2.9cqw,42px)}
 }
+
+/* Responsive images inside chapter content, including manually inserted images. */
+.chapter-body{min-width:0}
+.chapter-body img{display:block;box-sizing:border-box;max-width:100%!important;max-inline-size:100%!important;height:auto!important;block-size:auto!important;margin-inline:auto;object-fit:contain}
+.chapter-body :is(figure,picture){box-sizing:border-box;min-width:0;max-width:100%!important;max-inline-size:100%!important}
+.chapter-body figure{margin-inline:0}
