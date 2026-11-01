@@ -100,12 +100,12 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')document.que
       for(const el of paragraphs.slice(start,end+1)){
         if(/^【桐生三辉邀请您加入「通宵速来」战队】$/u.test(text(el))){el.dataset.dreamNotice='1';continue;}
         const override=text(el).includes('你先做个人别嘴里没个真话。')?'樱遥':null;
-        if(named(el,override))el.dataset.dreamSide=sakuraRight&&el.dataset.dreamSender==='樱遥'?'right':'left';
+        if(named(el,override))el.dataset.dreamSide=override||sakuraRight&&el.dataset.dreamSender==='樱遥'?'right':'left';
       }
     };
     if(page==='05.html')group('樱哥在窥屏吗？已读数变了！','咖啡的话我喜欢意式浓缩');
     if(page==='06.html'){
-      group('撤回撤回，我教你。','榆井：“要去！”');
+      group('榆井：“要去！”','榆井：“要去！”');
       group('对面的苏枋若无其事地端起拿铁喝了一口','虽然不知道发生了什么，榆井');
       for(const el of paragraphs){
         const value=text(el).replace(/^[：:]\s*/u,'');
@@ -126,7 +126,7 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')document.que
           }
         }
         const value=text(paragraphs[i]).replace(/^[：:]\s*/u,'');
-        if(/^[：:]/u.test(text(paragraphs[i]))&&(value==='我 我也想看'||value.startsWith('学猫叫 你真会那样')))paragraphs[i].dataset.dreamSide='right';
+        if(/^[：:]/u.test(text(paragraphs[i]))&&(value==='我 我也想看'||value.startsWith('学猫叫 你真会那样')||value==='[图片]'||value==='喂了，然而关系并没有打好。'))paragraphs[i].dataset.dreamSide='right';
       }
     }
     const isMessage=el=>el?.matches('.prose-line') && (!!el.dataset.dreamSender||/^\s*[：:]/u.test(el.textContent));
